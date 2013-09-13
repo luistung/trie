@@ -20,16 +20,17 @@ public:
     Trie();
     ~Trie();
 
-    template<typename V>
-    void add(const V& v, const D* data = NULL);
+    template<typename Iterator>
+    void add(Iterator begin, Iterator end, const D* data = NULL);
 
-    template<typename V>
-    typename V::const_iterator has_longest(const V& v) const;
+    template<typename Iterator>
+    Iterator has_longest(Iterator begin, Iterator end) const;
     
 
 private:
-    template<typename V>
-    void add(typename V::const_iterator begin, typename V::const_iterator end, Node* node, const D* data);
+    template<typename Iterator>
+    void add(Iterator begin, Iterator end, Node* node, const D* data);
+
     void destroy(Node* node);
 
     TrieNode<T, D>* m_root;

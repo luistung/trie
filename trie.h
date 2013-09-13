@@ -1,6 +1,4 @@
-#include <iostream>
 #include <tr1/unordered_map>
-#include <vector>
 
 template<typename T, typename D>
 struct TrieNode {

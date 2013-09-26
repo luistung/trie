@@ -4,12 +4,13 @@
 
 template<typename T, typename D>
 struct TrieNode {
-    typedef std::tr1::unordered_map<T, TrieNode*> Map;
+    typedef std::tr1::unordered_map<T, TrieNode<T, D>*> Map;
+    TrieNode() : m_flag(), m_children(NULL), m_data(NULL) {}
     ~TrieNode();
 
     bool m_flag; //标识一个串的结尾
-    D* m_data; 
     Map* m_children;
+    D* m_data; 
 };
 
 
@@ -66,7 +67,7 @@ private:
             node->m_children = new typename Node::Map();
         }
         Node* childNode = node->m_children->operator[](*begin);
-        if (childNode == NULL) {
+        if (!childNode) {
             childNode = new Node;
             node->m_children->operator[](*begin) = childNode;
         }
